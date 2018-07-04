@@ -9,8 +9,6 @@ compiler:
     - clang
     - gcc
 
-
-
 env:
     - LIBRE=re LIBREM=rem
 
@@ -48,7 +46,6 @@ addons:
 artifacts: true
 
 install:
-    ###- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install mingw32 wine; else brew install i386-mingw32-gcc wine; fi
     - git clone http://github.com/creytiv/re.git
     - git clone http://github.com/creytiv/rem.git
     - git clone http://github.com/creytiv/retest.git
