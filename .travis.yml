@@ -17,13 +17,19 @@ addons:
     apt:
         packages:
             libssl-dev
+            mingw32
+            wine
+
+before_install:
+- brew install i386-mingw32-gcc wine
+- if [ $TRAVIS_OS_NAME = osx ]; then brew install i386-mingw32-gcc wine; else echo FOO-DUMMY; fi
 
 install:
-    - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install mingw32 wine; else brew install i386-mingw32-gcc wine; fi
-    - git clone https://github.com/creytiv/re.git
-    - git clone https://github.com/creytiv/rem.git
-    - git clone https://github.com/creytiv/retest.git
-    - git clone https://github.com/creytiv/baresip.git
+    ###- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install mingw32 wine; else brew install i386-mingw32-gcc wine; fi
+    - git clone http://github.com/creytiv/re.git
+    - git clone http://github.com/creytiv/rem.git
+    - git clone http://github.com/creytiv/retest.git
+    - git clone http://github.com/alfredh/baresip.git
     - curl -OL 'https://github.com/alfredh/pytools/raw/master/ccheck.py'
     - for p in ${LIBRE} ${LIBREM}; do cd $p && sudo PATH="$PATH" make install && cd - && sudo rm -Rf $p; done
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ldconfig; fi
