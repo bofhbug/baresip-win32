@@ -17,13 +17,11 @@ addons:
     apt:
         packages:
             libssl-dev
-            ###mingw32
             mingw-w64
             wine
 
 before_install:
 ###- brew install i386-mingw32-gcc wine
-### 
 ####- brew cask uninstall oclint
 - if [ $TRAVIS_OS_NAME = osx ]; then brew install mingw-w64 wine; else echo "IF-FOO-DUMMY"; fi
 
@@ -40,6 +38,6 @@ install:
 script:
     ###- make openssl V=1 CCACHE= 
     - make V=1 CCACHE= TUPLE=i686-w64-mingw32
-###    - make V=1 CCACHE= 
+###- make V=1 CCACHE= 
     - make V=1 CCACHE= TUPLE=i686-w64-mingw32 EXTRA_CFLAGS=-Werror info test modules
     - python2 ccheck.py
