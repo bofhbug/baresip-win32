@@ -20,7 +20,6 @@ addons:
     apt:
         packages:
             libssl-dev
-###            mingw-w64
             wine
 
 before_install:
@@ -62,4 +61,3 @@ script:
     - make V=1 CCACHE= TUPLE=i686-w64-mingw32
     - make V=1 CCACHE= TUPLE=i686-w64-mingw32 EXTRA_CFLAGS=-Werror info test modules
     - python2 ccheck.py
-
