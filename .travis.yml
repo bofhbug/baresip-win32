@@ -40,13 +40,10 @@ before_install:
   brew install mingw-w64                                    ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install jq                                                                                    ;
   fi
-script: if [[ "$CC" == "i686-w64-mingw32-gcc" ]] && [[ "$TRAVIS_OS_NAME" == "osx"
+
+script:     if [[ "$CC" == "i686-w64-mingw32-gcc" ]] && [[ "$TRAVIS_OS_NAME" == "osx"
   ]]; then make CC=${CC} cli; else make CC=${CC} ; fi
-
 - if [ $TRAVIS_OS_NAME = osx ]; then brew install wine; else echo "IF-FOO-DUMMY"; fi
-
-###addons:
-###artifacts: true
 
 install:
     - git clone http://github.com/creytiv/re.git
