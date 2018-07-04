@@ -21,8 +21,8 @@ addons:
             wine
 
 before_install:
-- brew install i386-mingw32-gcc wine
-- if [ $TRAVIS_OS_NAME = osx ]; then brew install i386-mingw32-gcc wine; else echo FOO-DUMMY; fi
+###- brew install i386-mingw32-gcc wine
+- if [ $TRAVIS_OS_NAME = osx ]; then brew install i386-mingw32-gcc wine; else echo "IF-FOO-DUMMY"; fi
 
 install:
     ###- if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get install mingw32 wine; else brew install i386-mingw32-gcc wine; fi
