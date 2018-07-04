@@ -5,7 +5,6 @@ os:
     - osx
 
 compiler:
-    - i686-w64-mingw32-gcc
     - clang
     - gcc
 
@@ -19,6 +18,10 @@ addons:
         packages:
             libssl-dev
             wine
+            binutils-mingw-w64-i686
+            gcc-mingw-w64
+            mingw-w64-i686-dev
+            mingw-w64-common
 
 before_install:
 - if [[ "$CC" == "i686-w64-mingw32-gcc" ]] && [[ "$TRAVIS_OS_NAME" == "linux" ]];
@@ -42,8 +45,8 @@ script: if [[ "$CC" == "i686-w64-mingw32-gcc" ]] && [[ "$TRAVIS_OS_NAME" == "osx
 
 - if [ $TRAVIS_OS_NAME = osx ]; then brew install wine; else echo "IF-FOO-DUMMY"; fi
 
-addons:
-artifacts: true
+###addons:
+###artifacts: true
 
 install:
     - git clone http://github.com/creytiv/re.git
